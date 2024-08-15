@@ -31,10 +31,10 @@ class UserController extends Controller
         // ModelsUserModel::where('username', 'Dika')->update($data);
 
         // Delete data
-        ModelsUserModel::where('username', 'Dika')->delete();
+        // ModelsUserModel::where('username', 'Dika')->delete();
 
         // Akses UserModel
-        $user = ModelsUserModel::all();
+        $user = ModelsUserModel::with('level')->get();
         return view('user', ['data'=>$user]);
     }
 }
