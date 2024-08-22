@@ -22,9 +22,12 @@ class UserController extends Controller
 
         $activeMenu = 'user';
 
+        $level = LevelModel::all(); // Ambil data level untuk filter level
+
         return view('user.index', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
+            'level' => $level,
             'activeMenu' => $activeMenu,
         ]);
     }
@@ -34,6 +37,11 @@ class UserController extends Controller
     {
         $users = UserModel::select('user_id', 'username', 'nama', 'level_id')->with('level');
 
+        // Filter data user berdasarkan level_id
+        if ($request->level_id) {
+            $users->where('level_id', $request->level_id);
+        }
+        
         return DataTables::of($users)
         // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
             ->addIndexColumn() 
@@ -99,7 +107,7 @@ class UserController extends Controller
         ];
 
         $page = (object) [
-            'title' => 'Tambah User Baru'
+            'title' => 'Detail User'
         ];
 
         $activeMenu = 'user';
@@ -145,22 +153,22 @@ class UserController extends Controller
             'password' => 'nullable|min:5',
             'level_id' => 'required|integer'
         ]);
-
-        // UserModel::find($id)->update([
-        //     'username' => $request->username,
-        //     'nama' => $request->nama,
-        //     'password' => $request->password,
-        //     'level_id' => $request->level_id,
-        // ]);
-
+        
         $user = UserModel::find($id);
-    
+        
         $user->update([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => $request->password ? bcrypt($request->password) : $user->password,
             'level_id' => $request->level_id,
         ]);
+        
+            // UserModel::find($id)->update([
+            //     'username' => $request->username,
+            //     'nama' => $request->nama,
+            //     'password' => $request->password,
+            //     'level_id' => $request->level_id,
+            // ]);
         
         return redirect('/user')->with('success', "Data User berhasil diubah");
     }
