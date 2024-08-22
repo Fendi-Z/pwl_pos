@@ -1,23 +1,18 @@
 <?php
 
-use App\Http\Controllers\AnggotasController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\LevelController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [WelcomeController::class, 'index']);
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::post('/list', [UserController::class, 'list']);
+    Route::get('/create', [UserController::class, 'create']);
+    Route::post('/', [UserController::class, 'store']);
+    Route::get('/{id}', [UserController::class, 'show']);       // Menampilkan detail user
+    Route::get('/{id}/edit', [UserController::class, 'edit']);  // Menampilkan halaman form edit user
+    Route::put('/{id}', [UserController::class, 'update']);     // Menyimpan perubahan data user
+    Route::delete('/{id}', [UserController::class, 'destroy']);
 });
-
-Route::get('/level', [LevelController::class, 'index']);
-Route::get('/kategori', [KategoriController::class, 'index']);
-Route::get('/user', [UserController::class, 'index']);
-
-Route::get('/cekobject', [AnggotasController::class, 'cekObject'],);
-Route::get('/insert', [AnggotasController::class, 'insert'],);
-Route::get('/update', [AnggotasController::class, 'update'],);
-Route::get('/delete', [AnggotasController::class, 'delete'],);
-Route::get('/all', [AnggotasController::class, 'all'],);
-Route::get('/find', [AnggotasController::class, 'find'],);
-Route::get('/getwhere', [AnggotasController::class, 'getWhere'],);
