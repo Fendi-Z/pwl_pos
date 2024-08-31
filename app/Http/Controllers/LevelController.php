@@ -62,7 +62,7 @@ class LevelController extends Controller
             'level_nama' => $request->level_nama,
         ]);
 
-        return redirect('/level')->with('success', 'Data Level berhasil disimpan');
+        return redirect('level')->with('success', 'Data Level berhasil disimpan');
     }
 
     public function show($id)
@@ -106,22 +106,18 @@ class LevelController extends Controller
 
         LevelModel::find($id)->update($request->all());
         
-        return redirect('/level')->with('success', "Data Level berhasil diubah");
+        return redirect('level')->with('success', "Data Level berhasil diubah");
     }
 
     public function destroy($id)
     {
-        $check = LevelModel::find($id);
+        $level = LevelModel::find($id);
 
-        if (!$check) {
-            return redirect('/level')->with('error', 'Data Level tidak ditemukan');
-        }
-        
-        try {
-            LevelModel::destroy($id);
-            return redirect('/level')->with('success', 'Data Level berhasil dihapus');
-        } catch (\Illuminate\Database\QueryException $e) {
-            return redirect('/level')->with('error', 'Data Level gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+        if ($level) {
+            $level->delete();
+            return redirect('level')->with('success', 'Data Level berhasil dihapus');
+        } else {
+            return redirect('level')->with('error', 'Data Level gagal dihapus / tidak ditemukan');
         }
     }
 }
