@@ -35,9 +35,8 @@
                     @enderror
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-2 control-label col-form-label"></label>
-                <div class="col-10 d-flex justify-content-end">
+            <div class="form-group">
+                <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                     <a class="btn btn-sm btn-default ml-1" href="{{ url('level')}}">Kembali</a>
                 </div>

@@ -104,10 +104,7 @@ class LevelController extends Controller
             'level_nama' => 'required|string|max:100',
         ]);
 
-        LevelModel::find($id)->update([
-            'level_kode' => $request->level_kode,
-            'level_nama' => $request->level_nama,
-        ]);
+        LevelModel::find($id)->update($request->all());
         
         return redirect('/level')->with('success', "Data Level berhasil diubah");
     }
