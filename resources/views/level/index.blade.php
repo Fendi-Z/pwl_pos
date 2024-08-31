@@ -15,28 +15,12 @@
       @if (session('error'))
           <div class="alert alert-danger">{{session('error')}}</div>
       @endif
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group row">
-            <label class="col-1 control-label col-form-label">Filter: </label>
-            <div class="col-3">
-              <select name="level_id" id="level_id" class="form-control">
-                <option value="">- Semua -</option>
-                @foreach ($level as $item)
-                  <option value="{{$item->level_id}}">{{$item->level_nama}}</option>
-                @endforeach
-              </select>
-              <small class="form-text text-muted">Nama Level</small>
-            </div>
-          </div>
-        </div>
-      </div>
       <table class="table table-bordered table-striped table-hover table-sm" id="table_level">
         <thead>
           <tr>
               <th>ID</th>
-              <th>Kode</th>
-              <th>Nama</th>
+              <th class="text-center">Kode Level</th>
+              <th class="text-center">Nama Level</th>
               <th>Aksi</th>
           </tr>
         </thead>
@@ -51,9 +35,9 @@
 @push('js')
   <script>
     $(document).ready(function() {
-      var dataUser = $('#table_level').DataTable({
-          // serverSide: true, jika ingin menggunakan server side processing
+      var dataLevel = $('#table_level').DataTable({
           serverSide: true,     
+          processing: true,
           ajax: {
               "url": "{{ url('level/list') }}",
               "dataType": "json",
@@ -64,36 +48,31 @@
           },
           columns: [
             {
-              // nomor urut dari laravel datatable addIndexColumn()
               data: "DT_RowIndex",            
               className: "text-center",
               orderable: false,
               searchable: false    
-            },{
+            },
+            {
               data: "level_kode",               
               className: "",
-              // orderable: true, jika ingin kolom ini bisa diurutkan 
               orderable: true,    
-              // searchable: true, jika ingin kolom ini bisa dicari
               searchable: true    
-            },{
+            },
+            {
               data: "level_nama",               
               className: "",
               orderable: true,    
               searchable: true    
-            },{
+            },
+            {
               data: "aksi",               
-              className: "",
+              className: "text-center",
               orderable: false,    
               searchable: false    
             }
           ]
       }); 
-
-      $('#level_id').on('change', function() {
-        dataUser.ajax.reload();
-      })
-      
     });
   </script>
 @endpush 

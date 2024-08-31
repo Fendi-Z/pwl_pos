@@ -24,19 +24,8 @@ Route::group(['prefix' => 'level'], function () {
     Route::post('/list', [LevelController::class, 'list']);
     Route::get('/create', [LevelController::class, 'create']);
     Route::post('/', [LevelController::class, 'store']);
-    Route::get('/{id}', [LevelController::class, 'show']);       // Menampilkan detail level
-    Route::get('/{id}/edit', [LevelController::class, 'edit']);  // Menampilkan halaman form edit level
-    Route::put('/{id}', [LevelController::class, 'update']);     // Menyimpan perubahan data level
+    Route::get('/{id}', [LevelController::class, 'show']);       
+    Route::get('/{id}/edit', [LevelController::class, 'edit']);  
+    Route::put('/{id}', [LevelController::class, 'update']);     
     Route::delete('/{id}', [LevelController::class, 'destroy']);
-});
-
-Route::group(['prefix' => 'kategori'], function () {
-    Route::get('/', [KategoriController::class, 'index']);
-    Route::post('/list', [KategoriController::class, 'list']);
-    Route::get('/create', [KategoriController::class, 'create']);
-    Route::post('/', [KategoriController::class, 'store']);
-    Route::get('/{id}', [KategoriController::class, 'show']);       // Menampilkan detail kategori
-    Route::get('/{id}/edit', [KategoriController::class, 'edit']);  // Menampilkan halaman form edit kategori
-    Route::put('/{id}', [KategoriController::class, 'update']);     // Menyimpan perubahan data kategori
-    Route::delete('/{id}', [KategoriController::class, 'destroy']);
 });

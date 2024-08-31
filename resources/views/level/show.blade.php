@@ -19,7 +19,7 @@
                 <td>{{$level->level_id}}</td>
             </tr>
             <tr>
-                <th>Kode</th>
+                <th>Kode Level</th>
                 <td>{{ $level->level_kode }}</td>
             </tr>
             <tr>
