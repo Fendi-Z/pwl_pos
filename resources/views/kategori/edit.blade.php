@@ -18,7 +18,7 @@
             @csrf
             {!! method_field('PUT') !!}  <!-- tambahkan baris ini untuk proses edit yang butuh method PUT -->
             <div class="form-group row">
-                <label class="col-2 control-label col-form-label">Kode</label>
+                <label class="col-2 control-label col-form-label">Kode Kategori</label>
                 <div class="col-10">
                     <input type="text" class="form-control" id="kategori_kode" name="kategori_kode" value="{{ old('kategori_kode', $kategori->kategori_kode) }}" required>
                     @error('kategori_kode')
@@ -35,9 +35,8 @@
                     @enderror
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-2 control-label col-form-label"></label>
-                <div class="col-10 d-flex justify-content-end">
+            <div class="form-group">
+                <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                     <a class="btn btn-sm btn-default ml-1" href="{{ url('kategori')}}">Kembali</a>
                 </div>

@@ -7,7 +7,7 @@
         <div class="card-tools"></div>
     </div>
     <div class="card-body">
-        @empty($kategori)
+        @empty($stok)
         <div class="alert alert-danger alert-dismissible">
             <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
             Data yang Anda cari tidak ditemukan.
@@ -16,20 +16,28 @@
         <table class="table table-bordered table-striped table-hover table-sm">
             <tr>
                 <th class="col-2">ID</th>
-                <td>{{$kategori->kategori_id}}</td>
+                <td>{{ $stok->stok_id }}</td>
             </tr>
             <tr>
-                <th>Kode Kategori</th>
-                <td>{{ $kategori->kategori_kode }}</td>
+                <th>Barang</th>
+                <td>{{ $stok->barang->barang_nama }}</td>
             </tr>
             <tr>
-                <th>Nama Kategori</th>
-                <td>{{$kategori->kategori_nama}}</td>
+                <th>Tanggal</th>
+                <td>{{ $stok->stok_tanggal }}</td>
+            </tr>
+            <tr>
+                <th>Jumlah</th>
+                <td>{{ $stok->stok_jumlah }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ $stok->user->nama }}</td>
             </tr>
         </table>
-        @endempty
+    @endempty
         <div class="d-flex justify-content-center">
-            <a href="{{ url('kategori') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+            <a href="{{ url('stok') }}" class="btn btn-sm btn-default mt-2 float-right">Kembali</a>
         </div>
     </div>
 </div>

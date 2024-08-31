@@ -14,7 +14,7 @@ class KategoriModel extends Model
         'kategori_id', 'kategori_kode', 'kategori_nama'
     ];
 
-    public function users():HasMany {
-        return $this->hasMany(UserModel::class);
+    public function kategoris():HasMany {
+        return $this->hasMany(KategoriModel::class);
     }
 }
