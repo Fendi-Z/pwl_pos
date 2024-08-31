@@ -16,23 +16,23 @@ class KategoriSeeder extends Seeder
         //
         $data = [
             [
-                'kategori_kode' => 'KAT001', 
+                'kategori_kode' => 'ELK', 
                 'kategori_nama' => 'Elektronik'
             ],
             [
-                'kategori_kode' => 'KAT002', 
+                'kategori_kode' => 'PKN', 
                 'kategori_nama' => 'Pakaian'
             ],
             [
-                'kategori_kode' => 'KAT003', 
+                'kategori_kode' => 'MKN', 
                 'kategori_nama' => 'Makanan'
             ],
             [
-                'kategori_kode' => 'KAT004', 
+                'kategori_kode' => 'KSH', 
                 'kategori_nama' => 'Kesehatan'
             ],
             [
-                'kategori_kode' => 'KAT005', 
+                'kategori_kode' => 'KCN', 
                 'kategori_nama' => 'Kecantikan'
             ],
         ];
